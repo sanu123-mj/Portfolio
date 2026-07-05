@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mubassir Javad Mujeeb — Research Portfolio</title>
+<meta name="description" content="Research portfolio of Mubassir Javad Mujeeb — AI, deep learning, computer vision and environmental intelligence.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --ink:#14181c;
+  --ink-soft:#4a535e;
+  --paper:#f0f2ec;
+  --paper-raised:#ffffff;
+  --paper-sunken:#e6e9e0;
+  --line: rgba(20,24,28,0.13);
+  --line-strong: rgba(20,24,28,0.26);
+
+  --accent:#a83c2e;
+  --accent-ink:#7c2c21;
+  --accepted:#2f6f4e;
+  --accepted-bg:#e8f0ea;
+  --review:#a8721f;
+  --review-bg:#f3ead8;
+  --submitted:#46596b;
+  --submitted-bg:#e6eaee;
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "IBM Plex Sans", -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --sidebar-w: 260px;
+  --max-w: 820px;
+  --radius: 4px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+.grid-bg{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity:0.3;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+  pointer-events:none;
+}
+
+a{color:inherit;}
+h1,h2,h3,h4{font-family:var(--font-display); font-weight:600; margin:0; letter-spacing:-0.01em;}
+p{margin:0 0 1em 0;}
+ul{margin:0; padding:0; list-style:none;}
+.mono{font-family:var(--font-mono);}
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--accent-ink);
+  display:flex;
+  align-items:center;
+  gap:0.7em;
+  margin-bottom:1rem;
+}
+.eyebrow::before{
+  content:"";
+  width:22px; height:1px;
+  background:var(--accent);
+  display:inline-block;
+}
+
+/* ============================================================
+   LAYOUT SHELL
+   ============================================================ */
+.shell{ display:flex; min-height:100vh; }
+
+/* ---- Sidebar ---- */
+.sidebar{
+  width:var(--sidebar-w);
+  flex-shrink:0;
+  position:sticky;
+  top:0;
+  height:100vh;
+  border-right:1px solid var(--line);
+  padding:3rem 2rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow-y:auto;
+}
+.masthead-name{ font-size:1.25rem; line-height:1.3; }
+.masthead-role{
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  color:var(--ink-soft);
+  margin-top:0.7rem;
+  letter-spacing:0.02em;
+}
+.mast-id{
+  font-family:var(--font-mono);
+  font-size:0.64rem;
+  color:var(--ink-soft);
+  opacity:0.75;
+  margin-top:1.6rem;
+  line-height:1.9;
+}
+
+.toc{ margin-top:3rem; }
+.toc-label{
+  font-family:var(--font-mono);
+  font-size:0.62rem;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  opacity:0.8;
+  margin-bottom:1.1rem;
+}
+.toc li{ margin-bottom:0.1rem; }
+.toc a{
+  display:block;
+  font-size:0.87rem;
+  padding:0.55rem 0.1rem;
+  color:var(--ink-soft);
+  text-decoration:none;
+  border-left:2px solid transparent;
+  padding-left:0.85rem;
+  margin-left:-0.85rem;
+  transition:color .15s ease, border-color .15s ease;
+}
+.toc a:hover{ color:var(--ink); }
+.toc a.active{
+  color:var(--ink);
+  border-left-color:var(--accent);
+  font-weight:500;
+}
+
+.sidebar-foot{
+  font-family:var(--font-mono);
+  font-size:0.68rem;
+  color:var(--ink-soft);
+  padding-top:1.6rem;
+  margin-top:2rem;
+  border-top:1px solid var(--line);
+  line-height:2;
+}
+.sidebar-foot a{ text-decoration:underline; text-underline-offset:3px; }
+
+.topbar{display:none;}
+
+/* ---- Main column ---- */
+.main{ flex:1; min-width:0; }
+section{
+  padding:6rem clamp(1.5rem, 5vw, 5rem);
+  border-bottom:1px solid var(--line);
+  max-width:1180px;
+}
+section .inner{ max-width:var(--max-w); }
+section:last-of-type{ border-bottom:none; }
+
+.section-head{ margin-bottom:3rem; }
+.section-title{ font-size:clamp(1.55rem, 2.4vw, 1.95rem); }
+.section-intro{ color:var(--ink-soft); max-width:58ch; margin-top:1rem; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#top{
+  position:relative;
+  padding-top:5.5rem;
+  padding-bottom:5.5rem;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:4rem;
+  align-items:center;
+  max-width:1180px;
+}
+.hero-title{
+  font-size:clamp(2.1rem, 4.2vw, 3.1rem);
+  line-height:1.1;
+  max-width:14ch;
+}
+.hero-title em{ font-style:italic; color:var(--accent-ink); }
+.hero-sub{
+  margin-top:1.6rem;
+  font-size:1.05rem;
+  color:var(--ink-soft);
+  max-width:52ch;
+}
+.hero-meta-line{
+  margin-top:1.6rem;
+  font-family:var(--font-mono);
+  font-size:0.78rem;
+  color:var(--ink-soft);
+  letter-spacing:0.01em;
+}
+.hero-meta-line span{ margin:0 0.5em; opacity:0.5; }
+
+.hero-cta{
+  margin-top:2.6rem;
+  display:flex; gap:1.1rem; flex-wrap:wrap;
+}
+.btn{
+  font-family:var(--font-mono);
+  font-size:0.78rem;
+  letter-spacing:0.02em;
+  padding:0.85rem 1.5rem;
+  border-radius:2px;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:0.6rem;
+  border:1px solid var(--ink);
+  transition:transform .15s ease, background .15s ease, color .15s ease;
+}
+.btn-solid{ background:var(--ink); color:var(--paper); }
+.btn-solid:hover{ background:var(--accent); border-color:var(--accent); transform:translateY(-1px); }
+.btn-line{ background:transparent; color:var(--ink); }
+.btn-line:hover{ background:var(--paper-raised); transform:translateY(-1px); }
+
+.hero-photo-wrap{ position:relative; }
+.figure-frame{
+  position:relative;
+  background:var(--paper-sunken);
+  border:1px solid var(--line-strong);
+  overflow:hidden;
+}
+.hero-photo-wrap .figure-frame{ width:210px; height:252px; border-radius:2px; }
+.figure-frame img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(35%) contrast(1.03); }
+.figure-frame img.hidden{ display:none; }
+.img-placeholder{
+  display:none;
+  position:absolute; inset:0;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0.5rem;
+  text-align:center;
+  padding:1rem;
+  color:var(--ink-soft);
+  background: repeating-linear-gradient(45deg, var(--paper-sunken), var(--paper-sunken) 8px, var(--paper) 8px, var(--paper) 16px);
+}
+.figure-frame img.hidden + .img-placeholder{ display:flex; }
+.ph-icon{
+  font-family:var(--font-mono); font-size:1.2rem;
+  width:1.9rem; height:1.9rem;
+  border:1px dashed var(--line-strong); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+}
+.ph-text{ font-family:var(--font-mono); font-size:0.62rem; line-height:1.4; word-break:break-word; }
+.fig-caption{
+  font-family:var(--font-mono); font-size:0.65rem; color:var(--ink-soft);
+  margin-top:0.7rem; text-align:center; letter-spacing:0.02em;
+}
+
+/* small thumbnail variant, for certs / education / reviewing */
+{
+  width:56px; height:56px;
+  flex-shrink:0;
+  border-radius:4px;
+}
+.thumb-frame .ph-icon{ width:1.3rem; height:1.3rem; font-size:0.85rem; }
+.thumb-frame .ph-text{ display:none; }
+.thumb-frame .img-placeholder{ padding:0.3rem; gap:0.2rem; }
+
+/* ============================================================
+   STAMP
+   ============================================================ */
+.stamp{
+  font-family:var(--font-mono);
+  font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  padding:0.34rem 0.75rem;
+  border:1.5px solid currentColor;
+  border-radius:3px;
+  display:inline-flex; align-items:center; gap:0.45em;
+  transform:rotate(-3deg);
+  white-space:nowrap;
+}
+.stamp::before{ content:"●"; font-size:0.5em; transform:translateY(-1px); }
+.stamp-accepted{ color:var(--accepted); background:var(--accepted-bg); }
+.stamp-review{ color:var(--review); background:var(--review-bg); }
+.stamp-submitted{ color:var(--submitted); background:var(--submitted-bg); }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-lede{ font-family:var(--font-display); font-size:1.3rem; font-weight:400; line-height:1.55; }
+.about-body{ margin-top:1.5rem; color:var(--ink-soft); max-width:64ch; }
+.stat-row{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr));
+  gap:1px; background:var(--line); margin-top:2.8rem; border:1px solid var(--line);
+}
+.stat{ background:var(--paper-raised); padding:1.5rem 1.2rem; }
+.stat-num{ font-family:var(--font-display); font-size:1.85rem; color:var(--accent-ink); }
+.stat-label{ font-family:var(--font-mono); font-size:0.65rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); margin-top:0.4rem; }
+
+/* ============================================================
+   RESEARCH STATEMENT (new)
+   ============================================================ */
+.research-cards{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:2.6rem;
+}
+.research-card{ background:var(--paper-raised); padding:1.6rem; }
+.research-card h4{ font-family:var(--font-body); font-size:0.96rem; font-weight:600; }
+.research-card p{ color:var(--ink-soft); font-size:0.86rem; margin-top:0.6rem; margin-bottom:0; }
+.fillbox{
+  border:1px dashed var(--line-strong);
+  border-radius:var(--radius);
+  padding:1.4rem 1.6rem;
+  background:var(--paper-raised);
+  color:var(--ink-soft);
+  font-size:0.9rem;
+}
+.fillbox .fillbox-label{
+  font-family:var(--font-mono); font-size:0.65rem; text-transform:uppercase; letter-spacing:0.08em;
+  color:var(--accent-ink); display:block; margin-bottom:0.6rem;
+}
+
+/* ============================================================
+   EDUCATION / EXPERIENCE / TEACHING entries
+   ============================================================ */
+.entry{
+  display:grid;
+  grid-template-columns: 140px 56px 1fr;
+  gap:1.6rem;
+  padding:1.9rem 0;
+  border-top:1px solid var(--line);
+  align-items:start;
+}
+.entry:first-child{ border-top:none; }
+.entry-date{ font-family:var(--font-mono); font-size:0.74rem; color:var(--ink-soft); padding-top:0.25rem; }
+.entry-title{ font-size:1.06rem; font-weight:600; font-family:var(--font-body); }
+.entry-org{ color:var(--accent-ink); font-size:0.9rem; margin-top:0.2rem; }
+.entry-desc{ color:var(--ink-soft); margin-top:0.7rem; font-size:0.93rem; }
+.entry-meta{ font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-soft); margin-top:0.6rem; }
+
+/* variant without thumbnail column, used where no image needed */
+.entry-noimg{ grid-template-columns:140px 1fr; }
+
+/* ============================================================
+   TEST SCORES
+   ============================================================ */
+.score-grid{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(190px,1fr));
+  gap:1px; background:var(--line); border:1px solid var(--line);
+}
+.score-card{ background:var(--paper-raised); padding:1.6rem; }
+.score-name{ font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); }
+.score-value{ font-family:var(--font-display); font-size:1.7rem; margin-top:0.6rem; }
+.score-value.empty{ color:var(--ink-soft); font-size:0.95rem; font-family:var(--font-mono); }
+.score-note{ font-size:0.78rem; color:var(--ink-soft); margin-top:0.5rem; }
+
+/* ============================================================
+   PUBLICATIONS
+   ============================================================ */
+.pub-subnav{ display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:3rem; }
+.pub-subnav a{
+  font-family:var(--font-mono); font-size:0.72rem; text-decoration:none;
+  padding:0.6rem 1rem; border:1px solid var(--line-strong); border-radius:2px;
+  color:var(--ink-soft); display:inline-flex; align-items:center; gap:0.6rem;
+}
+.pub-subnav a:hover{ background:var(--paper-raised); color:var(--ink); }
+.pub-subnav .count{
+  font-size:0.65rem; background:var(--ink); color:var(--paper); border-radius:50%;
+  width:1.3em; height:1.3em; display:inline-flex; align-items:center; justify-content:center;
+}
+
+.pub-group{ margin-bottom:3.8rem; }
+.pub-group:last-child{ margin-bottom:0; }
+.pub-group-head{
+  display:flex; align-items:center; gap:1rem;
+  margin-bottom:1.6rem; padding-bottom:0.9rem;
+  border-bottom:1px solid var(--line-strong);
+  scroll-margin-top:2rem;
+}
+.pub-group-title{ font-size:1.15rem; }
+.pub-group-sub{ font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-soft); margin-left:auto; }
+
+.pub-card{
+  display:grid; grid-template-columns:150px 1fr; gap:1.8rem;
+  background:var(--paper-raised); border:1px solid var(--line);
+  padding:1.7rem; margin-bottom:1.2rem;
+  transition:border-color .15s ease;
+}
+.pub-card:hover{ border-color:var(--line-strong); }
+.pub-card:last-child{ margin-bottom:0; }
+.pub-fig .figure-frame{ width:100%; aspect-ratio:4/3; }
+.pub-num{ font-family:var(--font-mono); font-size:0.7rem; color:var(--ink-soft); }
+.pub-title{ font-size:1.04rem; font-weight:600; font-family:var(--font-body); line-height:1.45; margin-top:0.4rem; }
+.pub-venue{ font-size:0.88rem; color:var(--ink-soft); margin-top:0.6rem; font-style:italic; }
+.pub-foot{ display:flex; align-items:center; gap:1rem; margin-top:1.1rem; flex-wrap:wrap; }
+.pub-authors{ font-family:var(--font-mono); font-size:0.7rem; color:var(--ink-soft); }
+
+/* ============================================================
+   LISTS WITH SMALL THUMBNAILS (reviewing / education certs / awards)
+   ============================================================ */
+.thumb-list{ border-top:1px solid var(--line); }
+.thumb-item{
+  display:grid;
+  grid-template-columns:56px 1fr auto;
+  gap:1.4rem;
+  padding:1.6rem 0;
+  border-bottom:1px solid var(--line);
+  align-items:start;
+}
+.thumb-item-title{ font-weight:600; font-size:0.97rem; }
+.thumb-item-desc{ color:var(--ink-soft); font-size:0.88rem; margin-top:0.5rem; grid-column:2/3; }
+.thumb-item-meta{ font-family:var(--font-mono); font-size:0.71rem; color:var(--ink-soft); white-space:nowrap; text-align:right; }
+
+/* simple text-only list, no thumbnail column (presentations, awards, certs w/o photos) */
+.simple-list{ border-top:1px solid var(--line); }
+.simple-item{
+  display:grid; grid-template-columns:1fr auto; gap:1.2rem;
+  padding:1.6rem 0; border-bottom:1px solid var(--line); align-items:baseline;
+}
+.simple-item-title{ font-weight:600; font-size:0.97rem; }
+.simple-item-desc{ color:var(--ink-soft); font-size:0.88rem; margin-top:0.5rem; grid-column:1/-1; }
+.simple-item-meta{ font-family:var(--font-mono); font-size:0.71rem; color:var(--ink-soft); white-space:nowrap; }
+
+/* ============================================================
+   REFERENCES (new)
+   ============================================================ */
+.ref-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:1px; background:var(--line); border:1px solid var(--line);
+}
+.ref-card{ background:var(--paper-raised); padding:1.7rem; }
+.ref-name{ font-family:var(--font-mono); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--ink-soft); }
+.ref-value{ font-size:1rem; font-weight:600; margin-top:0.6rem; color:var(--ink-soft); }
+.ref-line{ font-size:0.85rem; color:var(--ink-soft); margin-top:0.45rem; }
+
+/* ============================================================
+   GALLERY (new)
+   ============================================================ */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(190px,1fr));
+  gap:1.1rem;
+}
+.gallery-item .figure-frame{ width:100%; aspect-ratio:4/3; border-radius:3px; }
+.gallery-item .fig-caption{ text-align:left; margin-top:0.6rem; }
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+.skill-block{ margin-bottom:2rem; }
+.skill-block:last-child{ margin-bottom:0; }
+.skill-cat{ font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent-ink); margin-bottom:0.9rem; }
+.pill-row{ display:flex; flex-wrap:wrap; gap:0.55rem; }
+.pill{ font-size:0.82rem; padding:0.45rem 0.85rem; background:var(--paper-raised); border:1px solid var(--line); border-radius:20px; color:var(--ink-soft); }
+
+.lang-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.1rem; margin-top:1.8rem; }
+.lang-card{ border:1px solid var(--line); background:var(--paper-raised); padding:1.2rem 1.3rem; }
+.lang-name{ font-weight:600; font-size:0.92rem; }
+.lang-levels{ font-family:var(--font-mono); font-size:0.68rem; color:var(--ink-soft); margin-top:0.6rem; line-height:1.8; }
+
+/* ============================================================
+   CONTACT / FOOTER
+   ============================================================ */
+#contact .inner{ max-width:var(--max-w); }
+.contact-title{ font-size:clamp(1.8rem,3.4vw,2.6rem); }
+.contact-links{ display:flex; flex-wrap:wrap; gap:1.1rem; margin-top:2.2rem; }
+.contact-links a{
+  font-family:var(--font-mono); font-size:0.85rem;
+  padding:0.9rem 1.4rem; border:1px solid var(--ink); border-radius:2px;
+  text-decoration:none; display:flex; align-items:center; gap:0.6rem;
+  transition:background .15s, color .15s;
+}
+.contact-links a:hover{ background:var(--ink); color:var(--paper); }
+.site-foot{
+  padding:2.2rem clamp(1.5rem,5vw,5rem);
+  font-family:var(--font-mono); font-size:0.7rem; color:var(--ink-soft);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem;
+}
+
+.reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 980px){
+  .shell{ flex-direction:column; }
+  .sidebar{ display:none; }
+  .topbar{
+    display:flex; position:sticky; top:0; z-index:50;
+    background:var(--paper); border-bottom:1px solid var(--line);
+    padding:1.1rem 1.4rem; align-items:center; justify-content:space-between;
+  }
+  .topbar-name{ font-family:var(--font-display); font-size:1.05rem; }
+  .topbar-btn{ font-family:var(--font-mono); font-size:0.75rem; border:1px solid var(--ink); padding:0.5rem 0.8rem; border-radius:2px; background:none; }
+  .mobile-nav{ display:none; position:fixed; inset:0; top:58px; background:var(--paper); z-index:49; padding:1.8rem; overflow-y:auto; }
+  .mobile-nav.open{ display:block; }
+  .mobile-nav a{ display:block; padding:1rem 0.2rem; border-bottom:1px solid var(--line); text-decoration:none; font-size:1rem; }
+
+  .hero-grid{ grid-template-columns:1fr; gap:2.4rem; }
+  .hero-photo-wrap{ order:-1; }
+  .hero-photo-wrap .figure-frame{ width:140px; height:168px; }
+  .hero-title{ max-width:none; }
+
+  .entry{ grid-template-columns:1fr; gap:0.8rem; }
+  .entry .thumb-frame{ display:none; }
+  .pub-card{ grid-template-columns:1fr; }
+  .pub-fig .figure-frame{ aspect-ratio:16/9; }
+  .thumb-item{ grid-template-columns:44px 1fr; }
+  .thumb-item-meta{ grid-column:2/3; text-align:left; }
+  .thumb-item-desc{ grid-column:1/-1; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-name">M. J. Mujeeb</span>
+  <button class="topbar-btn" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+</div>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#top">Home</a>
+  <a href="#about">About</a>
+  <a href="#research">Research Statement</a>
+  <a href="#education">Education</a>
+  <a href="#scores">Test Scores</a>
+  <a href="#experience">Experience</a>
+  <a href="#teaching">Teaching &amp; Mentoring</a>
+  <a href="#publications">Publications</a>
+  <a href="#reviewing">Reviewing</a>
+  <a href="#awards">Awards</a>
+  <a href="#presentations">Presentations</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#skills">Skills</a>
+  <a href="#references">References</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="shell">
+
+  <aside class="sidebar">
+    <div>
+      <div class="masthead-name">Mubassir Javad<br>Mujeeb</div>
+      <div class="masthead-role">AI &amp; Computer Vision Researcher</div>
+      <div class="mast-id">Abu Dhabi, UAE<br>ORCID 0009-0007-5804-1613</div>
+
+      <div class="toc">
+        <div class="toc-label">Contents</div>
+        <ul id="tocList">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research Statement</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#scores">Test Scores</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#teaching">Teaching &amp; Mentoring</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#reviewing">Reviewing</a></li>
+          <li><a href="#awards">Awards &amp; Honors</a></li>
+          <li><a href="#presentations">Presentations</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#references">References</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sidebar-foot">
+      <div><a href="mailto:mubassirpoduvanni@gmail.com">mubassirpoduvanni@gmail.com</a></div>
+      <div>(+971) 569723931</div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ============ HERO ============ -->
+    <section id="top">
+      <div class="grid-bg"></div>
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">Research Portfolio</div>
+          <h1 class="hero-title">Building AI that sees, <em>explains</em>, and generalizes.</h1>
+          <p class="hero-sub">
+            Computer Science graduate working across deep learning, computer vision and explainable AI —
+            with applications spanning medical imaging, remote sensing, agriculture and intelligent perception.
+          </p>
+          <div class="hero-meta-line">
+            Computer Vision <span>·</span> Explainable AI <span>·</span> Medical Imaging <span>·</span> Environmental AI
+          </div>
+          <div class="hero-cta">
+            <a class="btn btn-solid" href="#publications">View Publications</a>
+            <a class="btn btn-line" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-photo-wrap reveal">
+          <div class="figure-frame">
+            <img src="MY_DP.jpeg" alt="Portrait of Mubassir Javad Mujeeb" onerror="imgFallback(this)">
+            <div class="img-placeholder">
+              <span class="ph-icon">＋</span>
+              <span class="ph-text">assets/photo.png</span>
+            </div>
+          </div>
+          <div class="fig-caption"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about">
+      <div class="inner reveal">
+        <div class="eyebrow">About</div>
+        <p class="about-lede">
+          Research-oriented Computer Scientist with a strong foundation in artificial intelligence, deep learning,
+          computer vision and representation learning — experienced in building novel architectures, interpretable
+          AI systems, and vision-based analytical models across healthcare and real-world domains.
+        </p>
+        <p class="about-body">
+          My research interests span computer vision, scene understanding, representation learning, weakly supervised learning, explainable artificial intelligence (XAI), and intelligent perception systems for complex environments. I am particularly interested in developing robust, interpretable, and data-efficient AI methodologies that can address challenging real-world problems under limited supervision, uncertainty, and domain variability.
+
+My recent research has focused on medical image analysis, explainable AI evaluation, graph neural networks, multimodal learning, and deep representation learning, with experience designing novel neural architectures, conducting rigorous experimental evaluations, ablation studies, and reproducible AI research. I have worked extensively on developing interpretable and reliable deep learning systems for healthcare diagnostics, including retinal disease analysis, dermatological image classification, neonatal brain imaging, and clinical decision support applications.
+
+Beyond healthcare AI, I am deeply interested in applying computer vision and intelligent perception systems to interdisciplinary domains such as environmental monitoring, biodiversity conservation, precision agriculture, and autonomous systems. My broader research vision is to develop next-generation AI systems that can perceive, reason, explain, and adapt in complex real-world environments by integrating advances from computer vision, machine learning, robotics, causal reasoning, and scientific modeling.
+
+I am particularly motivated to pursue a PhD that enables interdisciplinary research at the intersection of artificial intelligence, computer vision, robotics, environmental science, and intelligent autonomous systems, where I can contribute to the development of trustworthy, explainable, and socially impactful AI technologies.
+
+        </p>
+
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">2</div><div class="stat-label">Accepted Papers</div></div>
+          <div class="stat"><div class="stat-num">7</div><div class="stat-label">In Review / Submitted</div></div>
+          <div class="stat"><div class="stat-num">6</div><div class="stat-label">Papers Reviewed</div></div>
+          <div class="stat"><div class="stat-num">3.79</div><div class="stat-label">GPA / 4.00</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH STATEMENT (new) ============ -->
+    <section id="research">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">For Admissions Committees</div>
+          <h2 class="section-title">Research statement</h2>
+          <p class="section-intro">A short synthesis of research direction and long-term goals — the kind of overview a PhD committee looks for first.</p>
+        </div>
+
+        <div class="research-cards reveal">
+          <div class="research-card">
+            <h4>Current focus</h4>
+            <p>Explainable, reliability-aware deep learning across medical imaging (retinal OCT, dermatology, neonatal MRI) and agricultural remote sensing.</p>
+          </div>
+          <div class="research-card">
+            <h4>Methodological interest</h4>
+            <p>Physics-guided and causally-grounded architectures — combining domain priors with attention, graph and state-space models.</p>
+          </div>
+          <div class="research-card">
+            <h4>Long-term direction</h4>
+            <p>Interdisciplinary AI for environmental science: perception systems for monitoring, conservation and geospatial risk modeling.</p>
+          </div>
+        </div>
+
+       
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">Education</div>
+          <h2 class="section-title">Academic background</h2>
+          <p class="section-intro">Each entry has a small slot for a scanned certificate or transcript photo.</p>
+        </div>
+
+
+
+
+
+        <div class="thumb-list reveal">
+          <div class="entry">
+            <div class="entry-date mono">Aug 2022 — Sep 2025</div>
+            <div class="figure-frame thumb-frame">
+              <img src="BACHELOR.jpeg" alt="Bachelor of Computer Science certificate" onerror="imgFallback(this)">
+              <div class="img-placeholder"><span class="ph-icon">＋</span></div>
+            </div>
+            <div>
+              <div class="entry-title">Bachelor of Computer Science</div>
+              <div class="entry-org">Lincoln University College — KotaBharu, Kelantan, 15150, Malaysia</div>
+              <div class="entry-meta">GPA: 3.79 / 4.00</div>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="entry-date mono">Jun 2019 — Mar 2021</div>
+            <div class="figure-frame thumb-frame">
+              <img src="certif2.jpeg" alt="Higher Secondary certificate" onerror="imgFallback(this)">
+              <div class="img-placeholder"><span class="ph-icon">＋</span></div>
+            </div>
+            <div>
+              <div class="entry-title">Higher Secondary Education</div>
+              <div class="entry-org">Department of Education — Kerala, India</div>
+              <div class="entry-meta">Score: 98.2% (1178 / 1200)</div>
+            </div>
+          </div>
+          <div class="entry">
+  <div class="entry-date mono">Aug 2019 — Aug 2021</div>
+  <div class="figure-frame thumb-frame">
+    <img src="certif3.jpeg" alt="Thahfeezul Quran certificate" onerror="imgFallback(this)">
+    <div class="img-placeholder"><span class="ph-icon">＋</span></div>
+  </div>
+  <div>
+    <div class="entry-title">Thahfeezul Quran</div>
+    <div class="entry-org">Al Falah Islamic Centre — Kerala, India</div>
+    <div class="entry-meta">Grade: A+</div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TEST SCORES ============ -->
+    <section id="scores">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">Standardized Tests</div>
+          <h2 class="section-title">Test scores</h2>
+          <p class="section-intro">Add your scores below as they become available — each card is ready to fill in.</p>
+        </div>
+
+        <div class="score-grid reveal">
+          <div class="score-card">
+            <div class="score-name">GRE</div>
+            <div class="score-value empty">Add score</div>
+            <div class="score-note">Verbal / Quant / AWA</div>
+          </div>
+          <div class="score-card">
+            <div class="score-name">IELTS</div>
+            <div class="score-value empty">Add score</div>
+            <div class="score-note">Overall band</div>
+          </div>
+          <div class="score-card">
+            <div class="score-name">TOEFL</div>
+            <div class="score-value empty">Add score</div>
+            <div class="score-note">Total score</div>
+          </div>
+          <div class="score-card">
+            <div class="score-name">Other</div>
+            <div class="score-value empty">Add score</div>
+            <div class="score-note">e.g. GATE, SAT</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">Experience</div>
+          <h2 class="section-title">Work &amp; research roles</h2>
+        </div>
+
+        <div class="reveal">
+          <div class="entry entry-noimg">
+            <div class="entry-date mono">Mar 2025 — May 2026</div>
+            <div>
+              <div class="entry-title">AI Research Engineer</div>
+              <div class="entry-org">JAVAD AI — Abu Dhabi / Bangalore</div>
+              <div class="entry-desc">
+                Designed VisionTrack-ReID, a real-time multi-object tracking and re-identification system integrating
+                YOLOv8, ByteTrack/DeepSORT and Siamese embedding networks for scalable video analytics. Built
+                research-grade generative models from scratch, including text-to-image diffusion pipelines and
+                attention-enhanced U-Nets, and delivered end-to-end AI systems for healthcare diagnostics and
+                predictive modeling.
+              </div>
+            </div>
+          </div>
+          <div class="entry entry-noimg">
+            <div class="entry-date mono">Oct 2025 — Nov 2025</div>
+            <div>
+              <div class="entry-title">Research Engineer</div>
+              <div class="entry-org">Excelerate — Dubai</div>
+              <div class="entry-desc">Researched and optimized prompt engineering strategies for large language models to improve response accuracy, coherence and alignment with user intent across NLP tasks.</div>
+            </div>
+          </div>
+          <div class="entry entry-noimg">
+            <div class="entry-date mono">Sep 2025 — Oct 2025</div>
+            <div>
+              <div class="entry-title">Healthcare Advisor</div>
+              <div class="entry-org">Yuva Intern — NSDC, Noida</div>
+              <div class="entry-desc">Developed and evaluated machine learning models for clinical diagnosis and treatment optimization using real-world healthcare datasets.</div>
+            </div>
+          </div>
+          <div class="entry entry-noimg">
+            <div class="entry-date mono">Jun 2024 — Apr 2025</div>
+            <div>
+              <div class="entry-title">Market Research Specialist</div>
+              <div class="entry-org">Symmetry Market Research — Abu Dhabi</div>
+              <div class="entry-desc">Led geospatial data collection and preprocessing across 1,350+ municipal infrastructure sites, directing a 24-member team on systems-level reliability research.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TEACHING & MENTORING (new) ============ -->
+<!-- ============ TEACHING & MENTORING (new) ============ -->
+<!-- ============ TEACHING & MENTORING ============ -->
+<section id="teaching">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">Academic Service</div>
+      <h2 class="section-title">Teaching &amp; mentoring</h2>
+      <p class="section-intro">PhD committees weigh teaching experience heavily for TA-ships and future faculty tracks.</p>
+    </div>
+
+    <div class="reveal" style="background: var(--paper-raised); border: 1px solid var(--line); border-radius: 8px; padding: 2rem;">
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Big Photo on Top -->
+        <div style="display: flex; justify-content: center;">
+          <div class="figure-frame" style="width: 100%; max-width: 500px; height: auto; aspect-ratio: 4/3; border-radius: 8px; overflow: hidden; border: 1px solid var(--line-strong);">
+            <img src="times.jpeg" alt="Teaching assistant session photo" onerror="imgFallback(this)" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <div class="img-placeholder"><span class="ph-icon">＋</span></div>
+          </div>
+        </div>
+
+        <!-- Details Below Photo -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span class="mono" style="font-size: 0.85rem; color: var(--ink-soft);">Nov 2024 — May 2025</span>
+          </div>
+          <div class="entry-title" style="font-size: 1.4rem; font-weight: 600;">Teaching Assistant (Part-Time)</div>
+          <div class="entry-org" style="font-size: 1.1rem; color: var(--accent-ink); margin-top: 0.2rem;">Times College — Abu Dhabi</div>
+          <div class="entry-desc" style="font-size: 1rem; color: var(--ink-soft); margin-top: 0.8rem; line-height: 1.7;">Mentored junior students in foundational Computer Science, Python and algorithmic thinking through small-group tutoring, lab support and doubt-clearing sessions.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+       
+
+
+    <!-- ============ PUBLICATIONS ============ -->
+    <section id="publications">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">Research Output</div>
+          <h2 class="section-title">Publications</h2>
+          <p class="section-intro">First-author work spanning graph learning, medical imaging, agricultural AI and network security — sorted by current status.</p>
+        </div>
+
+        <div class="pub-subnav reveal">
+          <a href="#pub-accepted"><span class="count">2</span> Accepted</a>
+          <a href="#pub-review"><span class="count">1</span> Under Review</a>
+          <a href="#pub-submitted"><span class="count">6</span> Submitted</a>
+        </div>
+
+        <div class="pub-group">
+          <div class="pub-group-head" id="pub-accepted">
+            <h3 class="pub-group-title">Accepted</h3>
+            <span class="pub-group-sub">2 papers</span>
+          </div>
+
+          <article class="pub-card reveal">
+            <div class="pub-fig">
+              <div class="figure-frame">
+                <img src="IEEE.png" alt="Architecture figure — GNN explainability" onerror="imgFallback(this)">
+                <div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">assets/papers/gnn-explainability-ccncps.png</span></div>
+              </div>
+              <div class="fig-caption"></div>
+            </div>
+            <div class="pub-body">
+              <div class="pub-num mono">01 / IEEE CCNCPS 2026</div>
+              <div class="pub-title">Reliability-Aware &amp; Explainability-Driven Evaluation of Graph Neural Networks on Citation Networks</div>
+              <div class="pub-venue">IEEE CCNCPS 2026</div>
+              <div class="pub-foot">
+                <span class="stamp stamp-accepted">Accepted</span>
+                <span class="pub-authors">Mubassir Javad et al.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal">
+            <div class="pub-fig">
+              <div class="figure-frame">
+                <img src="CIBM.png" alt="Architecture figure — SC-MSDNet" onerror="imgFallback(this)">
+                <div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">assets/papers/sc-msdnet-retinal.png</span></div>
+              </div>
+              <div class="fig-caption"></div>
+            </div>
+            <div class="pub-body">
+              <div class="pub-num mono">02 / Computers in Biology and Medicine (Q1)</div>
+              <div class="pub-title">SC-MSDNet: Structure-Consistent Multi-View Self-Distilled Network for Retinal Disease Classification</div>
+              <div class="pub-venue">Computers in Biology and Medicine — Q1</div>
+              <div class="pub-foot">
+                <span class="stamp stamp-accepted">Accepted</span>
+                <span class="pub-authors">Mubassir Javad et al.</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="pub-group">
+          <div class="pub-group-head" id="pub-review">
+            <h3 class="pub-group-title">Under Review</h3>
+            <span class="pub-group-sub">1 paper — major revision</span>
+          </div>
+
+          <article class="pub-card reveal">
+            <div class="pub-fig">
+              <div class="figure-frame">
+                <img src="datepalm.png" alt="Architecture figure — date palm stress detection" onerror="imgFallback(this)">
+                <div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">assets/papers/date-palm-cross-attention.png</span></div>
+              </div>
+              <div class="fig-caption"></div>
+            </div>
+            <div class="pub-body">
+              <div class="pub-num mono">03 / Computers and Electronics in Agriculture</div>
+              <div class="pub-title">Physics-Guided Multimodal Proxy-Based Stress Pattern Learning in Date Palms with Spatial Generalization: Counterfactual Cross-Attention and Self-Adversarial Gradient Injection</div>
+              <div class="pub-venue">Computers and Electronics in Agriculture — Elsevier</div>
+              <div class="pub-foot">
+                <span class="stamp stamp-review">Major Revision</span>
+                <span class="pub-authors">Mubassir Javad et al.</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="pub-group">
+          <div class="pub-group-head" id="pub-submitted">
+            <h3 class="pub-group-title">Submitted</h3>
+            <span class="pub-group-sub">6 papers — awaiting review</span>
+          </div>
+
+          <article class="pub-card reveal">
+            <div class="pub-fig">
+              <div class="figure-frame">
+                <img src="cans.png" alt="Architecture figure — CausalResonanceX" onerror="imgFallback(this)">
+                <div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">assets/papers/causalresonancex-nids.png</span></div>
+              </div>
+              <div class="fig-caption"></div>
+            </div>
+            <div class="pub-body">
+              <div class="pub-num mono">04 / CANS 2026 — Australia</div>
+              <div class="pub-title">CausalResonanceX: Training-Only Causal Interventions with Cryptographically Verifiable Explanations for Robust Network Intrusion Detection</div>
+              <div class="pub-venue">Submitted to CANS 2026, Australia</div>
+              <div class="pub-foot">
+                <span class="stamp stamp-submitted">Submitted</span>
+                <span class="pub-authors">Mubassir Javad et al.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal">
+            <div class="pub-fig">
+              <div class="figure-frame">
+                <img src="IDVM.jpeg" alt="Architecture figure — developmental variance mapping" onerror="imgFallback(this)">
+                <div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">assets/papers/developmental-variance-hie.png</span></div>
+              </div>
+              <div class="fig-caption"></div>
+            </div>
+            <div class="pub-body">
+              <div class="pub-num mono">05 / IEEE DELCON 2026</div>
+              <div class="pub-title">Individual Developmental Variance Mapping: Training-Free Assessment of Regional Tissue Heterogeneity in Neonatal Hypoxic-Ischemic Encephalopathy</div>
+              <div class="pub-venue">Submitted to IEEE DELCON 2026</div>
+              <div class="pub-foot">
+                <span class="stamp stamp-submitted">Submitted</span>
+                <span class="pub-authors">Mubassir Javad et al.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal">
+            <div class="pub-fig">
+              <div class="figure-frame">
+                <img src="xai.png" alt="Architecture figure — XAI reliability HAM10000" onerror="imgFallback(this)">
+                <div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">assets/papers/xai-reliability-ham10000.png</span></div>
+              </div>
+              <div class="fig-caption"></div>
+            </div>
+            <div class="pub-body">
+              <div class="pub-num mono">06 / Medical Image Analysis</div>
+              <div class="pub-title">A Multi-Dimensional Framework for Evaluating XAI Reliability in Dermatological Image Classification: Insights from Seven Analytical Dimensions on HAM10000</div>
+              <div class="pub-venue">Submitted to Medical Image Analysis</div>
+              <div class="pub-foot">
+                <span class="stamp stamp-submitted">Submitted</span>
+                <span class="pub-authors">Mubassir Javad et al.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal">
+            <div class="pub-fig">
+              <div class="figure-frame">
+                <img src="rf_emn (1).png" alt="Architecture figure — RF-EMN" onerror="imgFallback(this)">
+                <div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">assets/papers/rf-emn-oct.png</span></div>
+              </div>
+              <div class="fig-caption"></div>
+            </div>
+            <div class="pub-body">
+              <div class="pub-num mono">07 / DMIHER 2026</div>
+              <div class="pub-title">RF-EMN: A Lightweight Retinal Flow-Enhanced Manifold Network for Efficient OCT Image Classification</div>
+              <div class="pub-venue">Submitted to 4th DMIHER International Conference on AI in Healthcare, Education and Industry</div>
+              <div class="pub-foot">
+                <span class="stamp stamp-submitted">Submitted</span>
+                <span class="pub-authors">Mubassir Javad et al.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal">
+            <div class="pub-fig">
+              <div class="figure-frame">
+                <img src="pipeline.png" alt="Architecture figure — lesion ecosystem modeling" onerror="imgFallback(this)">
+                <div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">assets/papers/lesion-ecosystem-hie.png</span></div>
+              </div>
+              <div class="fig-caption"></div>
+            </div>
+            <div class="pub-body">
+              <div class="pub-num mono">08 / DMIHER 2026</div>
+              <div class="pub-title">Lesion Ecosystem Modeling: Emergent Tissue States and Organizational Collapse in Neonatal Hypoxic-Ischemic Encephalopathy</div>
+              <div class="pub-venue">Submitted to 4th DMIHER International Conference on AI in Healthcare, Education and Industry</div>
+              <div class="pub-foot">
+                <span class="stamp stamp-submitted">Submitted</span>
+                <span class="pub-authors">Mubassir Javad et al.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal">
+            <div class="pub-fig">
+              <div class="figure-frame">
+                <img src="teganet.jpg" alt="Architecture figure — TEGA-Net" onerror="imgFallback(this)">
+                <div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">assets/papers/tega-net-oct.png</span></div>
+              </div>
+              <div class="fig-caption"></div>
+            </div>
+            <div class="pub-body">
+              <div class="pub-num mono">09 / IJASCA (Q3)</div>
+              <div class="pub-title">TEGA-Net: Topological Ecosystem Graph Attention Network for High-Accuracy Interpretable Retinal OCT Classification</div>
+              <div class="pub-venue">Submitted to International Journal of Advances in Soft Computing and its Applications — Q3</div>
+              <div class="pub-foot">
+                <span class="stamp stamp-submitted">Submitted</span>
+                <span class="pub-authors">Mubassir Javad et al.</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REVIEWING ============ -->
+    <section id="reviewing">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">Service</div>
+          <h2 class="section-title">Peer review activity</h2>
+          <p class="section-intro"></p>
+        </div>
+
+        <div class="thumb-list reveal">
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame">
+              <img src="IEEE.png" alt="IEEE CCNCPS logo" onerror="imgFallback(this)">
+              <div class="img-placeholder"><span class="ph-icon">＋</span></div>
+            </div>
+            <div>
+              <div class="thumb-item-title">Reviewer — IEEE CCNCPS</div>
+              <div class="thumb-item-desc">Performed expert peer review of computer science and applied AI research, evaluating methodological rigor, technical correctness, innovation, experimental design, and scientific contribution.</div>
+            </div>
+            <div class="thumb-item-meta">3 papers</div>
+          </div>
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame">
+              <img src="REVIWER2.jpeg" alt="Journal of Imaging Informatics in Medicine logo" onerror="imgFallback(this)">
+              <div class="img-placeholder"><span class="ph-icon">＋</span></div>
+            </div>
+            <div>
+              <div class="thumb-item-title">Reviewer — Journal of Imaging Informatics in Medicine (Q1)</div>
+              <div class="thumb-item-desc">Performed expert peer review of manuscripts on AI-enabled diagnostic systems, assessing model validation, experimental design, clinical relevance, reproducibility, statistical rigor, and scientific contribution.</div>
+            </div>
+            <div class="thumb-item-meta">3 papers</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AWARDS ============ -->
+    <section id="awards">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">Recognition</div>
+          <h2 class="section-title">Awards &amp; honors</h2>
+        </div>
+
+        <div class="simple-list reveal">
+          <div class="simple-item">
+            <div class="simple-item-title">1st Prize — Health Equity AI Challenge</div>
+            <div class="simple-item-meta">RIT × Excelerate</div>
+            <div class="simple-item-desc">Won a global innovation challenge on healthcare accessibility, building an AI-based disease detection system for rural and low-income communities.</div>
+          </div>
+          <div class="simple-item">
+            <div class="simple-item-title">Public Speaking Award</div>
+            <div class="simple-item-meta">AI in Healthcare Competition</div>
+            <div class="simple-item-desc">Recognized for clarity, technical depth and societal impact in a presentation on AI applications in healthcare diagnostics.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRESENTATIONS ============ -->
+    <section id="presentations">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">Talks &amp; Engagements</div>
+          <h2 class="section-title">Presentations &amp; programs</h2>
+        </div>
+
+        <div class="simple-list reveal">
+          <div class="simple-item">
+            <div class="simple-item-title">DevFest Dubai 2025 — AI in Healthcare</div>
+            <div class="simple-item-meta">2025</div>
+            <div class="simple-item-desc">Delivered a technical presentation on ML models for diagnostic support systems and real-world deployment challenges.</div>
+          </div>
+          <div class="simple-item">
+           <div class="simple-item-title">Guest Speaker — AI in Healthcare</div>
+            <div class="simple-item-meta">Times College, Abu Dhabi · 2025</div>
+            <div class="simple-item-desc"> Presented a guest lecture on AI in Healthcare, discussing deep learning, computer vision, explainable AI, and emerging applications in medical diagnosis, clinical decision support, and intelligent healthcare systems.
+           </div>
+          </div>
+          <div class="simple-item">
+            <div class="simple-item-title">Young ADIPEC Youth Program</div>
+            <div class="simple-item-meta">ADIPEC 2025, Abu Dhabi</div>
+            <div class="simple-item-desc">Selected participant in a global energy innovation forum on sustainability, AI and future energy systems.</div>
+          </div>
+          <div class="simple-item">
+            <div class="simple-item-title">AI &amp; Digital Forensics Summer School</div>
+            <div class="simple-item-meta">Khalifa University × Google.org</div>
+            <div class="simple-item-desc">Participated in AI-focused workshops, hackathons and research training under the Khalifa University–Google.org collaboration.</div>
+          </div>
+          <div class="simple-item">
+            <div class="simple-item-title">1 Million Prompters Program</div>
+            <div class="simple-item-meta">Dubai Future Foundation &amp; Dubai Centre for AI</div>
+            <div class="simple-item-desc">Completed a structured national-level initiative on advanced LLM interaction and prompt optimization strategies.</div>
+          </div>
+          <div class="simple-item">
+            <div class="simple-item-title">AI/ML in Space Biology Training</div>
+            <div class="simple-item-meta">NASA Ames Research Center</div>
+            <div class="simple-item-desc">NASA-funded training applying machine learning to space biology datasets — classification, regression, clustering and explainable AI.</div>
+          </div>
+          <div class="simple-item">
+            <div class="simple-item-title">Abu Dhabi Global Health Week — Research Observer</div>
+            <div class="simple-item-meta">Department of Health, Abu Dhabi</div>
+            <div class="simple-item-desc">Attended a global healthcare innovation forum on AI-driven predictive medicine and digital transformation in medical systems.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICATIONS ============ -->
+    <section id="certifications">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">Continued Learning</div>
+          <h2 class="section-title">Certifications</h2>
+          <p class="section-intro">Each entry has a small slot for the certificate image or badge.</p>
+        </div>
+
+        <div class="thumb-list reveal">
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="KU .jpeg" alt="CS50 certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">AI & Digital Forensics Summer School Organization: Khalifa University × Google.org</div><div class="thumb-item-desc">Khalifa University </div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+
+
+
+
+
+        <div class="thumb-list reveal">
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="CS50.png" alt="CS50 certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">CS50: Introduction to Computer Science</div><div class="thumb-item-desc">Harvard University · edX</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+
+
+
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="alif.jpeg" alt="Power BI certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">Analyzing and Visualizing Data with Microsoft Power BI</div><div class="thumb-item-desc">Alifbyte Educational Institute</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="quantum.jpeg" alt="Quantum computing certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">LFQ101: Fundamentals of Quantum Computing</div><div class="thumb-item-desc">The Linux Foundation</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="nasa.jpeg" alt="NASA certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">AI/ML in Space Biology Training</div><div class="thumb-item-desc">NASA Ames Research Center</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="prompt.jpeg" alt="Prompt engineering certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">Prompt Engineering</div><div class="thumb-item-desc">Dubai Future Foundation</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="chat.jpeg" alt="ChatGPT in Smart Learning certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">ChatGPT in Smart Learning</div><div class="thumb-item-desc">Hamdan Bin Mohammed Smart University</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="java.jpeg" alt="JavaScript Essentials certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">JavaScript Essentials</div><div class="thumb-item-desc">Cisco</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="data.jpeg" alt="Data Analytics Essentials certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">Data Analytics Essentials</div><div class="thumb-item-desc">Cisco Networking Academy</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="adp.jpeg" alt="Cybercrime Project certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">Cybercrime Project</div><div class="thumb-item-desc">Abu Dhabi Police</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+          <div class="thumb-item">
+            <div class="figure-frame thumb-frame"><img src="1763041341906.jpeg" alt="AI in Healthcare certificate" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span></div></div>
+            <div><div class="thumb-item-title">AI in Healthcare</div><div class="thumb-item-desc">RCSI University of Medicine and Health Sciences</div></div>
+            <div class="thumb-item-meta"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow">Toolkit</div>
+          <h2 class="section-title">Skills &amp; languages</h2>
+        </div>
+
+        <div class="reveal">
+          <div class="skill-block">
+            <div class="skill-cat">Core Programming &amp; Development</div>
+            <div class="pill-row">
+              <span class="pill">Python</span><span class="pill">C++</span><span class="pill">Linux Shell</span>
+              <span class="pill">LaTeX</span><span class="pill">MATLAB</span><span class="pill">Git / GitHub</span>
+              <span class="pill">GitLab</span><span class="pill">Docker</span><span class="pill">JIRA</span>
+              <span class="pill">Jupyter</span><span class="pill">Reinforcement Learning</span><span class="pill">AI Alignment</span>
+            </div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-cat">Vision, ML &amp; AI</div>
+            <div class="pill-row">
+              <span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">Keras</span>
+              <span class="pill">FastAPI</span><span class="pill">Streamlit</span><span class="pill">Object Detection</span>
+              <span class="pill">CNNs</span><span class="pill">GANs</span><span class="pill">VAEs</span>
+              <span class="pill">NLP</span><span class="pill">Feature Extraction</span><span class="pill">SIFT</span>
+            </div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-cat">Mathematics, Data &amp; Analysis</div>
+            <div class="pill-row">
+              <span class="pill">Linear Algebra</span><span class="pill">Statistics</span><span class="pill">NumPy</span>
+              <span class="pill">Pandas</span><span class="pill">SciPy</span><span class="pill">scikit-learn</span>
+              <span class="pill">scikit-image</span><span class="pill">Matplotlib</span><span class="pill">Seaborn</span>
+              <span class="pill">Plotly</span><span class="pill">NLTK</span><span class="pill">MySQL</span>
+            </div>
+          </div>
+          <div class="skill-block">
+            <div class="skill-cat">Professional &amp; Project Tools</div>
+            <div class="pill-row">
+              <span class="pill">Project Management</span><span class="pill">Asana</span>
+              <span class="pill">AWS Lambda</span><span class="pill">AWS ECS</span><span class="pill">API Gateway</span>
+            </div>
+          </div>
+
+          <div class="lang-grid">
+            <div class="lang-card">
+              <div class="lang-name">English</div>
+              <div class="lang-levels">Listening C2 · Reading C2<br>Spoken Production C2 · Interaction C2 · Writing C2</div>
+            </div>
+            <div class="lang-card">
+              <div class="lang-name">Arabic</div>
+              <div class="lang-levels">Listening C1 · Reading B2<br>Spoken Production C1 · Interaction C1 · Writing B2</div>
+            </div>
+            <div class="lang-card">
+              <div class="lang-name">Hindi</div>
+              <div class="lang-levels">Listening C1 · Reading C2<br>Spoken Production C1 · Interaction C1 · Writing C1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REFERENCES (new) ============ -->
+    <section id="references">
+      <div class="inner">
+        <div class="section-head reveal">
+          <div class="eyebrow"></div>
+          <h2 class="section-title">References</h2>
+          <p class="section-intro"></p>
+        </div>
+
+<div class="ref-grid reveal">
+
+  <div class="ref-card">
+    <div class="ref-name">Referee 01</div>
+    <div class="ref-value">Mark C. DeMareo, Ed.D.</div>
+    <div class="ref-line">Independent Academic Mentor, Research Advisor, and Industry Mentor</div>
+    <div class="ref-line">Email: mdemareo@gmail.com | Phone: +1 (856) 304-3200</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-name">Referee 02</div>
+    <div class="ref-value">Dr. Jan Mihalik</div>
+    <div class="ref-line">Scientist, Khalifa University | Personal Mentor for Research</div>
+    <div class="ref-line">Email: mihalik.radeco@gmail.com | Phone: +420 774 296 188</div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-name">Referee 03</div>
+    <div class="ref-value">Add name</div>
+    <div class="ref-line">Title, Institution</div>
+    <div class="ref-line">email@example.com</div>
+  </div>
+
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY (new) ============ -->
+    <section id="gallery">
+      <div class="inner" style="max-width:1040px;">
+        <div class="section-head reveal">
+          <div class="eyebrow">In the Field</div>
+          <h2 class="section-title">Gallery</h2>
+          <p class="section-intro"> <span class="mono"></span> </p>
+        </div>
+
+        <div class="gallery-grid reveal">
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic1.jpeg" alt="Presentation photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/presentation-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic2.jpeg" alt="Award ceremony photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/award-ceremony-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic3.jpeg" alt="Workshop photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/workshop-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic4.jpeg" alt="Lecture photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/lecture-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic5.jpeg" alt="Conference photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/conference-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic6.jpeg" alt="Panel discussion photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/panel-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic7.jpeg" alt="Reviewing activity photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/reviewing-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic8.jpeg" alt="Classroom photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/classroom-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic9.jpeg" alt="Fieldwork photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/fieldwork-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic10.jpeg" alt="Fieldwork photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/fieldwork-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+
+          <div class="gallery-item">
+            <div class="figure-frame"><img src="pic11.jpeg" alt="Fieldwork photo" onerror="imgFallback(this)"><div class="img-placeholder"><span class="ph-icon">＋</span><span class="ph-text">gallery/fieldwork-01.png</span></div></div>
+            <div class="fig-caption"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact">
+      <div class="inner reveal">
+        <div class="eyebrow">Get in touch</div>
+        <h2 class="contact-title">Let's talk research.</h2>
+        <p class="section-intro" style="margin-top:1rem;">Open to PhD collaborations, research partnerships and reviewer invitations.</p>
+        <div class="contact-links">
+          <a href="mailto:mubassirpoduvanni@gmail.com">Email →</a>
+          <a href="tel:+971569723931">+971 56 972 3931</a>
+          <a href="https://www.linkedin.com/in/mubassir-javad-mujeeb-poduvanni-9551562a6/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://github.com/sanu123-mj" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://drive.google.com/drive/folders/11Z86TBxNdRztUJKwNOiMQQlndwtSWFir?usp=drive_link" target="_blank" rel="noopener">Research Papers ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <span>© <span id="year"></span> Mubassir Javad Mujeeb</span>
+      <span>Al Nahyan, Abu Dhabi, United Arab Emirates</span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+function imgFallback(img){ img.classList.add('hidden'); }
+
+const toggle = document.getElementById('mobileNavToggle');
+const mobileNav = document.getElementById('mobileNav');
+toggle.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open);
+  toggle.textContent = open ? 'Close' : 'Menu';
+});
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileNav.classList.remove('open');
+  toggle.setAttribute('aria-expanded', false);
+  toggle.textContent = 'Menu';
+}));
+
+const sections = document.querySelectorAll('main section[id]');
+const tocLinks = document.querySelectorAll('.toc a');
+const byId = id => document.querySelector(`.toc a[href="#${id}"]`);
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const link = byId(entry.target.id);
+    if (!link) return;
+    if (entry.isIntersecting) {
+      tocLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+sections.forEach(s => navObserver.observe(s));
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>
